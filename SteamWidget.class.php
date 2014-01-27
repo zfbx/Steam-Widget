@@ -10,6 +10,25 @@ define("DEFAULTPROFILE", "76561198016593929"); //default profile to use, current
 //		STEAM WIDGET
 //------------------------------------------------
 class SteamWidget{
+
+	public function get64Id($profileurl = null){
+		if($profileurl == null){
+			return DEFAULTPROFILE; //if nothing submitted, use the creators steam ID
+		} else {
+			if(strpos($profileurl, '/') !== false) {
+				$stripped = str_replace('>http://','>',$profileurl);
+				$split = explode("/", $profileurl);
+				$profileurl = $split[2];
+			}
+			$steamXml = simplexml_load_file('http://steamcommunity.com/id/'.$profileurl.'/?xml=1');
+			$steamId64 = $steamXml->steamID64;
+			if ($steamId64 != ''){
+				return $steamId64;
+			} else {
+				return '<span style="color:red">NONEXISTENT</span>';
+			}
+		}
+	}
 	
 	public function ago($i){//Last updated funtion (send it ago(timestamp) **use time() to get that
 		$m = time()-$i; $o='just now';
