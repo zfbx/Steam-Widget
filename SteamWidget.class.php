@@ -3,13 +3,30 @@
 //------------------------------------------------
 //		STEAM WIDGET CONFIGURATION 
 //------------------------------------------------
-define("APIKEY", "################################"); // Aquire at http://steamcommunity.com/dev/apikey
-define("DEFAULTPROFILE", "76561198016593929"); //default profile to use, currently set to the developer's.
+define("APIKEY", "#############################"); // Aquire at http://steamcommunity.com/dev/apikey
+define("DEFAULTPROFILE", "76561198016593929"); //default profile to use, currently set to the developers.
+//define("CACHE", true); //cahce content for ## minute
+//define("CACHETIME", 300); //time between updates (unix timestamp @ 5min )
 
 //------------------------------------------------
 //		STEAM WIDGET
 //------------------------------------------------
 class SteamWidget{
+
+	// TODO - add a cache file 
+	/*public function cacheCheck(){
+		$cachefile = 'temp.cache';
+		if (file_exists($cachefile)) {
+			$cachestring = file_get_contents($cachefile, true);
+			if ((now() - $time)$cachefile > CACHETIME) {
+			$cachefile = file_get_contents($url)
+			}
+			return $file;
+		} else {
+			$handle = fopen($cachefile, 'w') or die('Cannot open file:  '.$cachefile); //implicitly creates file
+			return false;
+		}
+	}*/
 
 	public function get64Id($profileurl = null){
 		if($profileurl == null){
