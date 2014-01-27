@@ -28,8 +28,18 @@ If user is in game it will print out the game title as a link to get the game in
 	echo $steamwidget->current_steam_status();
 ```
 
+<dl>
+  <dt>To call a html table of user's owned games</dt>
+  <dd>This will query steams API to get a list of all games that a user owns with the game's logo, user's playtime data and even a link to the game in the Steam store.</dd>
+</dl>
+```
+  $steamwidget = new SteamWidget();
+	echo $steamwidget->tb_download_database();
+```
+
 
 TODO
+----
 - [X] Add ability to convert SteamID to SteamID64.
 - [ ] Create ability to cache recent game list calls to increase page load speed.
 - [ ] Make calls to class file dynamic for calling different users from the main page.
