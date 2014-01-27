@@ -4,7 +4,7 @@
 //		STEAM WIDGET CONFIGURATION 
 //------------------------------------------------
 define("APIKEY", "################################"); // Aquire at http://steamcommunity.com/dev/apikey
-define("DEFAULTPROFILE", "76561198016593929"); //default profile to use, currently set to the developers.
+define("DEFAULTPROFILE", "76561198016593929"); //default profile to use, currently set to the developer's.
 
 //------------------------------------------------
 //		STEAM WIDGET
