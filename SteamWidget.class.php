@@ -106,7 +106,42 @@ class SteamWidget{
 	}
 
 	
-	function tb_download_database() {	
+	function query_games_styled() {	
+		$tbSteamData = simplexml_load_file('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' . APIKEY . '&steamid='.DEFAULTPROFILE.'&format=xml&include_appinfo=1');
+		$tbSteamOutput = "<table class=\"table table-striped table-bordered\"><tr><th>#</th><th></th><th>Games I Own</th><th>Playtime</th><th style=\"text-align:center;\">Store Link</th></tr>";
+		$v = 0;
+		foreach ($tbSteamData->games->message as $Steamdata){
+			$v++;
+			$gamename = $Steamdata->name;
+			$appid = $Steamdata->appid;
+			$appurl = 'http://store.steampowered.com/app/' . $appid;
+			$playtime = $Steamdata->playtime_forever;
+			$imglogourl = $Steamdata->img_logo_url;
+			if($playtime >= 60){
+				$playtime = round(($playtime / 60), 1) . ' hours';
+			}elseif($playtime == 0){
+				$playtime = 'Haven\'t Played';
+			}else{
+				$playtime = $playtime . ' minutes';
+			};
+			if($imglogourl == ''){
+				$gameimage = '<img src="css/noimage.jpg" height="69" width="184">';
+			} else {
+				$gameimage = '<img src="http://media.steampowered.com/steamcommunity/public/images/apps/'.$appid.'/'.$imglogourl.'.jpg" height="69" width="184">';
+			}
+			$tbSteamOutput .= '<tr>
+				<td>'.$v.'</td>
+				<td style="padding:0px;width:184px;">'.$gameimage.'</td>
+				<td style="vertical-align:middle"><h4><a href="' . $appurl . '">' . $gamename . '</a></h4></td>
+				<td style="vertical-align:middle"><b>' . $playtime . '</b></td>
+				<td style="text-align:center;vertical-align:middle;"><a href="' . $appurl . '" class="btn btn-default" role="button">Store Game Page</a></td></tr>';
+		}
+		$tbSteamOutput .= '</table>';
+		return $tbSteamOutput;
+	}
+	
+	
+	function query_games() {	
 		$tbSteamData = simplexml_load_file('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' . APIKEY . '&steamid='.DEFAULTPROFILE.'&format=xml&include_appinfo=1');
 		$tbSteamOutput = "<table class=\"table table-striped table-bordered\"><tr><th>#</th><th></th><th>Games I Own</th><th>Playtime</th><th style=\"text-align:center;\">Store Link</th></tr>";
 		$v = 0;

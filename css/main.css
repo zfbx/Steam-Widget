@@ -1,8 +1,12 @@
 body {
-	padding-top: 50px;
+	/*padding-top: 50px;*/
+	height:100%;
 }
 table.table-striped td {
 	vertical-align:middle !important;
+}
+.navbar {
+	border-radius: 0px;
 }
 #wrap {
 	min-height: 100%;
@@ -12,11 +16,16 @@ table.table-striped td {
 }
 #footer {
 	height: 50px;
-	background-color: #f5f5f5;
+	width:100%;
+	/*background-color: #f5f5f5; */
 	vertical-align:middle;
 	text-align:center;
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	margin-bottom: 0px
 }
 #footer > div {
 	vertical-align:middle;
-	padding-top:12px;
+	padding-top:14px;
 }
