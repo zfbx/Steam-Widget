@@ -3,7 +3,7 @@
 //------------------------------------------------
 //		STEAM WIDGET CONFIGURATION 
 //------------------------------------------------
-define("APIKEY", "1FF6C3C78A6452E14CDBA7A377A4104E"); 	// Aquire at http://steamcommunity.com/dev/apikey
+define("APIKEY", "##################################"); 	// Aquire at http://steamcommunity.com/dev/apikey
 define("DEFAULTPROFILE", "76561198016593929"); 			//default profile to use, currently set to the developers.
 //define("CACHE", true); 								//cahce content for ## minute
 //define("CACHETIME", 300); 							//time between updates (unix timestamp @ 5min)
