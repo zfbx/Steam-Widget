@@ -37,7 +37,8 @@ require 'SteamWidget.class.php';
 				<ul class="nav navbar-nav">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="steamID.php">Get SteamID64</a></li>
-					<li><a href="games.php">List Games</a></li>
+					<li><a href="games.php">Preformatted Games</a></li>
+					<li><a href="games2.php">Unformatted Games</a></li>
 				</ul>
 			</div>
 		</div>
