@@ -10,7 +10,7 @@ Setup
 ```
 define("APIKEY", "################################");
 ```
-3. you can also add a default profile to displace if a SteamID64 errors.
+3. you can also add a default profile to displace if a SteamID64 errors. 
 ```
 define("DEFAULTPROFILE", "76561198016593929");
 ```
