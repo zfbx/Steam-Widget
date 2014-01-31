@@ -4,12 +4,12 @@
 	$id = $_POST["steamid"];
 	$steamwidget = new SteamWidget();
 	$steamid64 = $steamwidget->get64IdCovnert($id);
-} ?>
+}?>
 <?php if(isset($steamid64)): ?>
-<br />
-<div class="col-md-12">
-	<?php echo $steamid64; ?>
-</div>
+	<br />
+	<div class="col-md-12">
+		<?php echo $steamid64; ?>
+	</div>
 <?php endif; ?>
 <div class="col-md-12"><br />
 	<form action="" method="post" role="form">
@@ -20,7 +20,8 @@
 				<button class="btn btn-default" type="submit">Convert</button>
 			</span>
 		</div>
-	</form><br />
+	</form>
+	<br />
 </div>
 
 <?php include('inc-footer.php') ?>

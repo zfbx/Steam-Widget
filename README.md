@@ -1,7 +1,7 @@
 SteamWidget
 ===========
 
-Using this php class I've made utilizes steams API so you can easly create a table of all your Steam games with logos and how much time you've spent playing each game as well as links to the store page of each game you own. You can also display a styled output of your current online status with your screen name and if you're playing a game, the name of that game. Each call requires the steamID64 of the user to query which is sometimes hard to find so i've also included a small script that will convert a SteamID into the SteamID64 for use with making queries. Still working on making it more friendly for multiple users. 
+Using this php class I've made utilizes steams API so you can easly create a table of all your Steam games with logos and how much time you've spent playing each game as well as links to the store page of each game you own. You can also display a styled output of your current online status with your screen name and if you're playing a game, the name of that game. Each call requires the sID64 of the user to query which is sometimes hard to find so i've also included a small script that will convert a SteamID into the SteamID64 for use with making queries. Still working on making it more friendly for multiple users. 
 
 Setup
 -----
@@ -12,7 +12,7 @@ define("APIKEY", "################################");
 ```
 3. you can also add a default profile to displace if a SteamID64 errors. 
 ```
-define("DEFAULTPROFILE", "76561198016593929");
+define("DEFAULTPROF", "76561198016593929");
 ```
 4. You can added a fallback image for games without a logo, point to the image here.
 ```
@@ -43,20 +43,20 @@ If user is in game it will print out the game title as a link to get the game in
 
 <dl>
   <dt>To call a for all of a user's owned games to return as a multidimentional array</dt>
-  <dd>array outputs: number, name, appid, playtimeago, gamelogourl (more to come possibly)</dd>
+  <dd>array outputs: number, name, appid, playtimeAgo, gamelogourl (more to come possibly)</dd>
 </dl>
 ```
 <table class="table table-striped table-bordered">
 	<tr><th>#</th><th>Logo</th><th>Games I Own</th><th>Playtime</th></tr>
 
 	<?php $steamwidget = new SteamWidget();
-	$games = $steamwidget->query_games($steamID64ToQuery);
+	$games = $steamwidget->query_games($sID64ToQuery);
 	foreach ($games as $number => $game): ?>
 	<tr>
 		<td><?php echo $game['number'];?></td>
 		<td><img src="<?php echo $game['gamelogourl'];?>" /></td>
 		<td><h4><a href="<?php echo 'http://store.steampowered.com/app/' . $game['appid'];?>"><?php echo $game['name'];?></a></h4></td>
-		<td><b><?php echo $game['playtimeago'];?></b></td>
+		<td><b><?php echo $game['playtimeAgo'];?></b></td>
 	</tr>
 	<?php endforeach; ?>
 </table>
