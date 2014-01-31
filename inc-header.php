@@ -39,6 +39,7 @@ require 'SteamWidget.class.php';
 					<li><a href="steamID.php">Get SteamID64</a></li>
 					<li><a href="games.php">Preformatted Games</a></li>
 					<li><a href="games2.php">Unformatted Games</a></li>
+					<li><a href="status.php">User Status</a></li>
 				</ul>
 			</div>
 		</div>

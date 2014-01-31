@@ -3,7 +3,7 @@
 //------------------------------------------------
 //		STEAM WIDGET CONFIGURATION 
 //------------------------------------------------
-define("APIKEY", "################################"); 	// Aquire at http://steamcommunity.com/dev/apikey
+define("APIKEY", "###############################"); 	// Aquire at http://steamcommunity.com/dev/apikey
 define("DEFAULTPROFILE", "76561198016593929"); 			//default profile to use, currently set to the developers.
 //define("CACHE", true); 								//cahce content for ## minute
 //define("CACHETIME", 300); 							//time between updates (unix timestamp @ 5min)
@@ -29,6 +29,43 @@ class SteamWidget{
 		}
 	}*/
 
+	
+	public function get64Id($profileurl = null){
+		if($profileurl == null){
+			return DEFAULTPROFILE; //if nothing submitted, use the creators steam ID
+		} else {
+			if(strpos($profileurl, '/') != false) {
+				$stripped = preg_replace('#^https?://#', '', $profileurl);
+				//echo $stripped; //debugging
+				$split = explode("/", $stripped);
+				//print_r($split); //debugging
+				$profileurl = $split[2];
+				//echo $profileurl; //debugging
+			}
+			$steamXml = simplexml_load_file('http://steamcommunity.com/id/'.$profileurl.'/?xml=1');
+			$steamId64 = $steamXml->steamID64;
+			if ($steamId64 != ''){
+				return $steamId64;
+			} else {
+				return false;
+			}
+		}
+	}
+	
+	//Check for ID or url and convert or passthrough ID64
+	public function checkFor64Id($var = null){
+		if($var != null){
+			if (strlen($var) == 17 && is_numeric($var)){
+				return $var;
+			} else {
+				$check = $this->get64Id($var);
+				return $check;
+			}
+		} else {
+			return false;
+		}
+	}
+	
 	public function get64IdCovnert($profileurl = null){
 		
 		$steamId64 = $this->get64Id($profileurl);
@@ -41,25 +78,6 @@ class SteamWidget{
 		
 	}
 	
-	public function get64Id($profileurl = null){
-		if($profileurl == null){
-			return DEFAULTPROFILE; //if nothing submitted, use the creators steam ID
-		} else {
-			if(strpos($profileurl, '/') !== false) {
-				$stripped = str_replace('>http://','>',$profileurl);
-				$split = explode("/", $profileurl);
-				$profileurl = $split[2];
-			}
-			$steamXml = simplexml_load_file('http://steamcommunity.com/id/'.$profileurl.'/?xml=1');
-			$steamId64 = $steamXml->steamID64;
-			if ($steamId64 != ''){
-				return $steamId64;
-			} else {
-				return false;
-			}
-		}
-	}
-	
 	public function ago($i){//Last updated funtion (send it ago(timestamp) **use time() to get that
 		$m = time()-$i; $o='just now';
 		$t = array('year'=>31556926,'month'=>2629744,'week'=>604800,'day'=>86400,'hour'=>3600,'minute'=>60,'second'=>1);
@@ -68,8 +86,9 @@ class SteamWidget{
 		}return $o;
 	}
 
-	public function current_steam_status() { 
-		$tbSteamXml = simplexml_load_file('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' . APIKEY . '&format=xml&steamids='.DEFAULTPROFILE);
+	public function current_steam_status($steamID64 = DEFAULTPROFILE) {
+		$steamID64 = $this->checkFor64Id($steamID64); //TODO Catch NULL/FALSE
+		$tbSteamXml = simplexml_load_file('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' . APIKEY . '&format=xml&steamids='.$steamID64);
 		$tbSteamName = $tbSteamXml->players->player->personaname;
 		if ($tbSteamName != "") {
 			$tbSteamId = $tbSteamXml->players->player->steamid;
@@ -119,7 +138,8 @@ class SteamWidget{
 	}
 
 	
-	function query_games_styled() {	
+	function query_games_styled($steamID64 = DEFAULTPROFILE) {
+		$steamID64 = $this->checkFor64Id($steamID64); //TODO Catch NULL/FALSE
 		$tbSteamData = simplexml_load_file('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' . APIKEY . '&steamid='.DEFAULTPROFILE.'&format=xml&include_appinfo=1');
 		$tbSteamOutput = "<table class=\"table table-striped table-bordered\"><tr><th>#</th><th></th><th>Games I Own</th><th>Playtime</th><th style=\"text-align:center;\">Store Link</th></tr>";
 		$v = 0;
@@ -154,7 +174,8 @@ class SteamWidget{
 	}
 	
 	
-	function query_games($steamID64 = DEFAULTPROFILE) {	
+	function query_games($steamID64 = DEFAULTPROFILE) {
+		$steamID64 = $this->checkFor64Id($steamID64); //TODO Catch NULL/FALSE
 		$tbSteamData = simplexml_load_file('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' . APIKEY . '&steamid='.$steamID64.'&format=xml&include_appinfo=1');
 		$output = array();
 		$i = 0;
