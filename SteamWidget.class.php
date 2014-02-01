@@ -3,7 +3,7 @@
 //------------------------------------------------
 //		STEAM WIDGET CONFIGURATION 
 //------------------------------------------------
-define("APIKEY", "###############################");// Aquire at http://steamcommunity.com/dev/apikey
+define("APIKEY", "###########################");// Aquire at http://steamcommunity.com/dev/apikey
 define("DEFAULTPROF", "76561198016593929"); 		//default profile to use, currently set to the developers.
 define("NOIMAGE", "css/noimage.jpg");				// fallback game logo image for games without a logo
 //define("CACHE", true); 							//cahce content for ## minute
