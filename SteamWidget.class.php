@@ -3,7 +3,7 @@
 //------------------------------------------------
 //		STEAM WIDGET CONFIGURATION 
 //------------------------------------------------
-define("APIKEY", "###########################");// Aquire at http://steamcommunity.com/dev/apikey
+define("APIKEY", "###############################");// Aquire at http://steamcommunity.com/dev/apikey
 define("DEFAULTPROF", "76561198016593929"); 		//default profile to use, currently set to the developers.
 define("NOIMAGE", "css/noimage.jpg");				// fallback game logo image for games without a logo
 //define("CACHE", true); 							//cahce content for ## minute
@@ -23,6 +23,7 @@ class SteamWidget{
 				$userID = preg_replace('#^https?://#', '', $userID);
 				$userID = explode("/", $userID);
 				$userID = $userID[2];
+				/*$userID = end($userID);*/ //for some reason this doesn't work?
 			}
 			$sXML = simplexml_load_file('http://steamcommunity.com/id/'.$userID.'/?xml=1');
 			$sID64 = $sXML->sID64;
