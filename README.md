@@ -7,10 +7,13 @@ Setup
 -----
 1. Go to http://steamcommunity.com/dev/apikey and get an api key if you don't already have one.
 2. Open SteamWidget.class.php to line 6 and replace the pound symbols with your apikey.
+
 		define("APIKEY", "###########################");
 3. you can also add a default profile to displace if a SteamID64 errors. 
+
 		define("DEFAULTPROF", "76561198016593929");
 4. You can added a fallback image for games without a logo, point to the image here.
+
 		define("NOIMAGE", "css/noimage.jpg");
 
 
