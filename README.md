@@ -1,3 +1,5 @@
+This project is archived, no longer being maintained and probably full of security holes. I made this when I was younger as a learning experience so.. use at your own risk..
+===========
 SteamWidget
 ===========
 
@@ -61,8 +63,4 @@ If user is in game it will print out the game title as a link to get the game in
 		$steamwidget = new SteamWidget();
 		$steamid64 = $steamwidget->get64Id($id);
 
-TODO
-----
-- [X] Add ability to convert SteamID to SteamID64.
-- [ ] Create ability to cache recent game list calls to increase page load speed.
-- [ ] Make calls to class file dynamic for calling different users from the main page.
+
